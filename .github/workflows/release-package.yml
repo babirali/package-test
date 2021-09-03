@@ -27,3 +27,9 @@ jobs:
         with: 
           name: assets-for-download
           path: downloads
+      - name: Trigger Azure Release Pipelines
+        uses: Azure/pipelines@release/v1
+        with: 
+          azure-devops-project-url: https://dev.azure.com/ahcs-dev/MHS
+          azure-pipeline-name: Test
+          azure-devops-token: c2ji5e22hm43bg32m7tmdg3syyqnnnrzwiyadigiyrpei6vtnfxq
