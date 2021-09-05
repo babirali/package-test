@@ -1,35 +1,27 @@
-# Publish GitHub workflow artifacts tutorial example
-name: Publish GitHub Actions Artifacts Example
-
 on:
   push:
     branches: [ main ]
 
+name: Create Release
+
 jobs:
-       
-  archive-build-artifacts:
+  build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-
-      - name: Step 1 - Create a temporary artifact downloads folder
-        run: mkdir downloads
-        
-      - name: step 2 - Add artifacts to publish to the temp folder
-        run: |
-          cd downloads
-          echo 'alpha'    > alpha.html
-          echo 'bravo'    > bravo.html
-          echo 'charlie'  > charlie.html
-          cd ..
-    
-      - name: Step 3 - Use the Upload Artifact GitHub Action
-        uses: actions/upload-artifact@v2
-        with: 
-          name: assets-for-download
-          path: downloads
-      - name: Trigger Azure Release Pipelines
-        uses: Azure/pipelines@release/v1
-        with: 
-          azure-devops-project-url: https://dev.azure.com/ahcs-dev/MHS
-          azure-pipeline-name: Test
-          #azure-devops-token: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
