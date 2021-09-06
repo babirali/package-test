@@ -19,13 +19,12 @@ jobs:
             date > generated.txt
             ls -ls
             cat generated.txt
-      - name: Commit files
-        run: |
-          git config --local user.email "babirali001@gmail.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -m "Add changes" -a
+      
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: actions-go/push@v1
         with:
-          github_token: ${{ secrets.PUSH_TOKEN }}
-          branch: ${{ github.ref }}
+          # The email that will appear in commits when changes needs to be committed
+          author-email: babirali001@gmail.com
+          author-name: babirali
+          commit-message: test
+          token: ${{ secrets.PUSH_TOKEN }}
