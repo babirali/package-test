@@ -11,17 +11,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      - name: Create local changes
+        run: |
+            date > generated.txt
+            ls -ls
+            cat generated.txt
+      - name: Commit files
+        run: |
+          git config --local user.email "babirali001@gmail.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-          draft: false
-          prerelease: false
+          github_token: ${{ secrets.PUSH_TOKEN }}
+          branch: ${{ github.ref }}
