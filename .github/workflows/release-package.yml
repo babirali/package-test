@@ -19,7 +19,15 @@ jobs:
             date > generated.txt
             ls -ls
             cat generated.txt
-      
+      - name: Commit files
+        run: |
+          git add .
+          git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PUSH_TOKEN }}
+          branch: ${{ github.ref }}
       - name: Push changes
         uses: actions-go/push@v1
         with:
