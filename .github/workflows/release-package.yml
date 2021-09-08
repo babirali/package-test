@@ -1,36 +1,26 @@
+name: Publish package to GitHub Packages
+
 on:
   push:
-    branches: [ main ]
-
-name: Create Release
+    branches: [ master ]
 
 jobs:
   build:
-    name: Create Release
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0
-      - name: Create local changes
-        run: |
-            date > generated.txt
-            ls -ls
-            cat generated.txt
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Add changes" -a
-    
-      - name: Push changes
-        uses: actions-go/push@v1
-        with:
-          # The email that will appear in commits when changes needs to be committed
-          author-email: babirali001@gmail.com
-          author-name: babirali
-          commit-message: test
-          token: ${{ secrets.PUSH_TOKEN }}
+    - uses: actions/checkout@v1
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml -pl '!brouter-routing-app'
+    - name: Deploy to Github Package Registry
+      env:
+        GITHUB_USERNAME: x-access-token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+      run:
+        mvn --settings settings.xml deploy -pl '!brouter-routing-app'
