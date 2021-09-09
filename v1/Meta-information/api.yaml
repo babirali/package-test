@@ -1,0 +1,82 @@
+id:
+  providerName: admin
+  apiName: Profile-System
+  version: v1
+uuid: 8228eefd-21ab-4810-bb0e-22375f45d286
+type: HTTP
+context: /profile-sys/v1
+contextTemplate: /profile-sys/{version}
+tags:
+ - profile
+documents: []
+lastUpdated: Oct 21, 2020 1:13:55 PM
+availableTiers:
+ -
+  name: Unlimited
+  displayName: Unlimited
+  description: Allows unlimited requests
+  requestsPerMin: 2147483647
+  requestCount: 2147483647
+  unitTime: 0
+  timeUnit: ms
+  tierPlan: FREE
+  stopOnQuotaReached: true
+availableSubscriptionLevelPolicies: []
+uriTemplates: []
+apiHeaderChanged: false
+apiResourcePatternsChanged: false
+status: PUBLISHED
+visibility: public
+gatewayLabels: []
+endpointSecured: false
+endpointAuthDigest: false
+transports: http,https
+advertiseOnly: false
+subscriptionAvailability: all_tenants
+corsConfiguration:
+  corsConfigurationEnabled: false
+  accessControlAllowOrigins:
+   - '*'
+  accessControlAllowCredentials: false
+  accessControlAllowHeaders:
+   - authorization
+   - Access-Control-Allow-Origin
+   - Content-Type
+   - SOAPAction
+   - apikey
+  accessControlAllowMethods:
+   - POST
+   - DELETE
+   - PATCH
+   - OPTIONS
+   - PUT
+   - GET
+endpointConfig: '{"endpoint_type":"http","production_endpoints":{"config":{"retryDelay":"","actionDuration":"60000","retryTimeOut":"","suspendDuration":"0","suspendErrorCode":[],"retryErroCode":[],"factor":"","suspendMaxDuration":"0","actionSelect":"fault"},"url":"http:\/\/10.79.34.55"}}'
+responseCache: Disabled
+cacheTimeout: 300
+implementation: ENDPOINT
+authorizationHeader: Authorization
+scopes: []
+isDefaultVersion: false
+isPublishedDefaultVersion: false
+environments:
+ - Internal Gateway
+createdTime: "1588783461037"
+additionalProperties: {}
+monetizationProperties: {}
+isMonetizationEnabled: false
+environmentList:
+ - PRODUCTION
+apiSecurity: oauth2,oauth_basic_auth_api_key_mandatory,api_key,basic_auth
+endpoints: []
+enableSchemaValidation: false
+apiCategories:
+ -
+  id: e6e8fe28-f130-43bf-b854-bee71a0dce2f
+  name: System
+  description: System APIs
+  numberOfAPIs: 0
+  tenantID: -1234
+accessControl: all
+rating: 0.0
+isLatest: true

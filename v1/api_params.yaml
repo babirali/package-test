@@ -1,0 +1,23 @@
+environments:
+  - name: dev
+    endpoints:
+      production:
+        url: 'http://10.79.34.55'
+  - name: qa
+    endpoints:
+      production:
+        url: 'http://10.79.36.122'
+      sandbox:
+  - name: staging
+    endpoints:
+      production:
+        url: 'http://10.79.40.106'      
+      sandbox:
+  - name: training
+    endpoints:
+      production:
+      sandbox:
+  - name: production
+    endpoints:
+      production:
+      sandbox:

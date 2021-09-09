@@ -1,0 +1,6674 @@
+openapi: 3.0.1
+info:
+  title: Profile API
+  version: '2'
+paths:
+  '/profile/{profile-id}/address':
+    get:
+      tags:
+        - Address
+      summary: Returns all addresses for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - Address
+      summary: Add an address
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AddressCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddressCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddressCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AddressCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AddressCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/address/{address-id}':
+    get:
+      tags:
+        - Address
+      summary: Returns a single address for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: address-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AddressDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AddressDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - Address
+      summary: Update an address
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: address-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AddressUpdateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddressUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddressUpdateDto'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    delete:
+      tags:
+        - Address
+      summary: Delete an address
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: address-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/casino-profile-status:
+    get:
+      tags:
+        - CasinoProfileStatus
+      summary: Returns all casino profile statuses
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoProfileStatusDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoProfileStatusDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoProfileStatusDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/comment-status:
+    get:
+      tags:
+        - CommentStatus
+      summary: Returns all comment statuses
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentStatusDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentStatusDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentStatusDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/casino/{casino-profile-id}/comment':
+    get:
+      tags:
+        - CompanyCasinoComment
+      summary: 'Returns casino comments for a profile, optionally filtering by Company'
+      parameters:
+        - name: casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-code
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: priority
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: status
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: return-all
+          in: query
+          schema:
+            type: boolean
+            nullable: true
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoCommentRequestDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoCommentRequestDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoCommentRequestDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - CompanyCasinoComment
+      summary: Add a casino comment
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/casino/{casino-profile-id}/comment/{casino-comment-id}':
+    get:
+      tags:
+        - CompanyCasinoComment
+      summary: Returns a single casino comment for a profile
+      parameters:
+        - name: casino-comment-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentRequestDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - CompanyCasinoComment
+      summary: Update a casino comment
+      parameters:
+        - name: casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: casino-comment-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentPutDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentPutDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentPutDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentPutDto'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    delete:
+      tags:
+        - CompanyCasinoComment
+      summary: Delete a comment
+      parameters:
+        - name: casino-comment-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/casino/comment/search':
+    post:
+      tags:
+        - CompanyCasinoComment
+      summary: Searches for Company Casino Comment
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentSearchResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentSearchResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentSearchResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/casino/{casino-profile-id}/comment/search':
+    post:
+      tags:
+        - CompanyCasinoComment
+      summary: Searches for Company Casino Comment for casino profile id
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoCommentSearchRequestDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentSearchResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentSearchResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoCommentSearchResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/company-casino-profile':
+    get:
+      tags:
+        - CompanyCasinoProfile
+      summary: 'Returns casino profiles for a profile, optionally filtering by Company'
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-code
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoProfileDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoProfileDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyCasinoProfileDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - CompanyCasinoProfile
+      summary: Add a casino profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CasinoProfileCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CasinoProfileCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CasinoProfileCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/company-casino-profile/{company-casino-profile-id}':
+    get:
+      tags:
+        - CompanyCasinoProfile
+      summary: Returns a single casino profile for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoProfileDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoProfileDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyCasinoProfileDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - CompanyCasinoProfile
+      summary: Update a casino profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-casino-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyCasinoProfileCreateDto'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/consent:
+    get:
+      tags:
+        - CompanyProfileConsent
+      summary: Fetches All ConsentTypes
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsentTypeGetResponseDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsentTypeGetResponseDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsentTypeGetResponseDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/consent':
+    get:
+      tags:
+        - CompanyProfileConsent
+      summary: Fetches CompanyProfileConsent for the given Profile Id
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyProfileConsentGetDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyProfileConsentGetDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyProfileConsentGetDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - CompanyProfileConsent
+      summary: Creates a new CompanyProfileConsent
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfileConsentCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfileConsentCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfileConsentCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfileConsentCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyProfileConsentCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfileConsentCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfileConsentCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/company-preferences':
+    get:
+      tags:
+        - CompanyProfilePreferences
+      summary: 'Returns company preferences for a profile, optionally filtering by Company'
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-code
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - CompanyProfilePreferences
+      summary: Add a company preferences record for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyProfilePreferencesCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfilePreferencesCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfilePreferencesCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/company-preferences/{company-profile-preferences-id}':
+    get:
+      tags:
+        - CompanyProfilePreferences
+      summary: Returns a single record of company preferences for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-profile-preferences-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - CompanyProfilePreferences
+      summary: Update company preferences for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-profile-preferences-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/company-subscription-type:
+    get:
+      tags:
+        - CompanySubscriptionType
+      summary: Returns all company subscription types
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionTypeDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionTypeDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionTypeDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/email/activation':
+    put:
+      tags:
+        - ConfirmProfileEmail
+      summary: EmailActivation By ProfileId
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/email/activation/token/{token}':
+    put:
+      tags:
+        - ConfirmProfileEmail
+      summary: EmailActivation By Token
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/emailverify':
+    put:
+      tags:
+        - ConfirmProfileEmail
+      summary: email-verify By ProfileId
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/email/subscribe':
+    put:
+      tags:
+        - ConfirmProfileEmail
+      summary: EmailSubcription By ProfileId
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/contact':
+    get:
+      tags:
+        - Contact
+      summary: Returns all contacts for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContactDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - Contact
+      summary: Add an contact
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ContactCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ContactCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ContactCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContactCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContactCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/contact/{profile-contact-id}':
+    get:
+      tags:
+        - Contact
+      summary: Returns a single contact for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: profile-contact-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContactDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContactDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - Contact
+      summary: Update an contact
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: profile-contact-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ContactUpdateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ContactUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ContactUpdateDto'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/contact/{contact-id}':
+    delete:
+      tags:
+        - Contact
+      summary: Delete an contact
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: contact-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/email:
+    get:
+      tags:
+        - ContactSearch
+      summary: Returns email if exists
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ContactSearchResultDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactSearchResultDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ContactSearchResultDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/contact-type:
+    get:
+      tags:
+        - ContactType
+      summary: Returns all contacttypes
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentStatusDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentStatusDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentStatusDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/errors/{code}':
+    get:
+      tags:
+        - Errors
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /profile/health:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+  /JWT:
+    get:
+      tags:
+        - JWT
+      summary: Generate token example
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /JWT/claims:
+    get:
+      tags:
+        - JWT
+      summary: Retrieve JWT claims
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  /JWT/role-test:
+    post:
+      tags:
+        - JWT
+      summary: Retrieve JWT claims testing role
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  '/profile/{profile-id}':
+    get:
+      tags:
+        - Profile
+      summary: Returns a Profile by its Profile Id and Company Id
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-code
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: account-number
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - Profile
+      summary: Updates a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateDto'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/detail':
+    get:
+      tags:
+        - Profile
+      summary: Returns a Profile and all of its details
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: company-code
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDetailDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDetailDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDetailDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile:
+    get:
+      tags:
+        - Profile
+      summary: Find a Detailed Profile by Account Number
+      parameters:
+        - name: company-code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: account-number
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDetailDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDetailDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileGetDetailDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - Profile
+      summary: Creates a new profile
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/search:
+    post:
+      tags:
+        - Profile
+      summary: Searches for profiles
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSearchRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSearchRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSearchRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSearchRequestDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileSearchResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSearchResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSearchResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/search/signup:
+    post:
+      tags:
+        - Profile
+      summary: Searches for profiles SignUp
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSignupSearchRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSignupSearchRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSignupSearchRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSignupSearchRequestDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileSearchResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSearchResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSearchResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/sync:
+    post:
+      tags:
+        - Profile
+      summary: Sync profile and its related information in one operation
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSyncPostDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSyncPostDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSyncPostDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSyncPostDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileSyncPostResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSyncPostResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSyncPostResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/IVRsearch:
+    post:
+      tags:
+        - Profile
+      summary: IVRSearches for profiles
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileIVRSearchRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileIVRSearchRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileIVRSearchRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileIVRSearchRequestDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileIVRSearchResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileIVRSearchResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileIVRSearchResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  /profile/search/hotel-reservation:
+    post:
+      tags:
+        - Profile
+      summary: HotelReservationSearch for profiles
+      parameters:
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileHotelReservationSearchRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileHotelReservationSearchRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileHotelReservationSearchRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileHotelReservationSearchRequestDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileHotelReservationSearchResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileHotelReservationSearchResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileHotelReservationSearchResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/subscription':
+    get:
+      tags:
+        - ProfileSubscriptions
+      summary: 'Returns profile subscriptions for a profile, optionally filtering by Company'
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileSubscriptionsForAllCompanySubscriptionTypeDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileSubscriptionsForAllCompanySubscriptionTypeDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileSubscriptionsForAllCompanySubscriptionTypeDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - ProfileSubscriptions
+      summary: Add a profile subscriptions record for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSubscriptionsCreateDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSubscriptionsCreateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProfileSubscriptionsCreateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProfileSubscriptionsCreateDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileSubscriptionsCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSubscriptionsCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSubscriptionsCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/subscription/{profile-subscription-id}':
+    get:
+      tags:
+        - ProfileSubscriptions
+      summary: Returns a single record of profile subscriptions for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: profile-subscription-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProfileSubscriptionsDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSubscriptionsDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSubscriptionsDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    delete:
+      tags:
+        - ProfileSubscriptions
+      summary: Delete an ProfileSubscription
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: profile-subscription-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/property-profile':
+    get:
+      tags:
+        - PropertyProfile
+      summary: 'Returns property profiles for a profile, optionally filtering by Property'
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: property-code
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyProfileDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyProfileDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyProfileDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    post:
+      tags:
+        - PropertyProfile
+      summary: Add a property profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+      responses:
+        '201':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PropertyProfileCreateResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyProfileCreateResponseDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PropertyProfileCreateResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+  '/profile/{profile-id}/property-profile/{property-profile-id}':
+    get:
+      tags:
+        - PropertyProfile
+      summary: Returns a single property profile for a profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: property-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PropertyProfileDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyProfileDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PropertyProfileDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+    put:
+      tags:
+        - PropertyProfile
+      summary: Update a property profile
+      parameters:
+        - name: profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: property-profile-id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Company-Code
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Source-System
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PropertyProfileDto'
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+        - Bearer: []
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties:
+        type: object
+        additionalProperties: false
+    AddressDto:
+      required:
+        - addressLine1
+        - contactTypeCode
+      type: object
+      properties:
+        profileAddressId:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+        contactTypeCode:
+          type: string
+        addressLine1:
+          maxLength: 100
+          minLength: 0
+          type: string
+        addressLine2:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        city:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        stateProvince:
+          maxLength: 60
+          minLength: 0
+          type: string
+          nullable: true
+        postalCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+          nullable: true
+        country:
+          maxLength: 60
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    AddressCreateDto:
+      required:
+        - addressLine1
+        - contactTypeCode
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        contactTypeCode:
+          type: string
+        addressLine1:
+          maxLength: 50
+          minLength: 0
+          type: string
+        addressLine2:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        city:
+          maxLength: 128
+          minLength: 0
+          type: string
+          nullable: true
+        stateProvince:
+          maxLength: 30
+          minLength: 0
+          type: string
+          nullable: true
+        postalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        country:
+          maxLength: 30
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    AddressCreateResponseDto:
+      type: object
+      properties:
+        profileAddressId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    AddressUpdateDto:
+      type: object
+      properties:
+        profileAddressId:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+          nullable: true
+        contactTypeCode:
+          type: string
+          nullable: true
+        addressLine1:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        addressLine2:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        city:
+          maxLength: 128
+          minLength: 0
+          type: string
+          nullable: true
+        stateProvince:
+          maxLength: 30
+          minLength: 0
+          type: string
+          nullable: true
+        postalCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        country:
+          maxLength: 30
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    CompanyCasinoProfileStatusDto:
+      type: object
+      properties:
+        playerStatusCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 25
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    CommentStatusDto:
+      required:
+        - description
+      type: object
+      properties:
+        commentStatusCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 25
+          minLength: 0
+          type: string
+      additionalProperties: false
+    CompanyCasinoCommentRequestDto:
+      required:
+        - companyCode
+        - priority
+        - source
+      type: object
+      properties:
+        companyCasinoCommentId:
+          type: string
+          format: uuid
+          nullable: true
+        casinoProfileId:
+          type: string
+          format: uuid
+        companyCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+        propertyCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        status:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        externalCommentId:
+          type: integer
+          format: int64
+          nullable: true
+        displayDate:
+          type: string
+          format: date-time
+          nullable: true
+        displayEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        commentStatusDate:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        source:
+          maxLength: 255
+          minLength: 0
+          type: string
+        priority:
+          maxLength: 5
+          minLength: 0
+          type: string
+        content:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        modifiedDate:
+          type: string
+          format: date-time
+          nullable: true
+        createdByFirstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        createdByLastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        createdByDepartment:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        createdByTitle:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByFirstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByLastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByDepartment:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByTitle:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    CompanyCasinoCommentCreateDto:
+      required:
+        - companyCode
+        - priority
+        - source
+      type: object
+      properties:
+        companyCasinoCommentId:
+          type: string
+          format: uuid
+          nullable: true
+        casinoProfileId:
+          type: string
+          format: uuid
+        companyCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+        propertyCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        commentStatusCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+          nullable: true
+        externalCommentId:
+          type: integer
+          format: int64
+          nullable: true
+        displayDate:
+          type: string
+          format: date-time
+          nullable: true
+        displayEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        commentStatusDate:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        source:
+          maxLength: 255
+          minLength: 0
+          type: string
+        priority:
+          maxLength: 5
+          minLength: 0
+          type: string
+        content:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        createdByFirstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        createdByLastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        createdByDepartment:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        createdByTitle:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByFirstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByLastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByDepartment:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedByTitle:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    CompanyCasinoCommentCreateResponseDto:
+      type: object
+      properties:
+        companyCasinoCommentId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    CompanyCasinoCommentPutDto:
+      type: object
+      properties:
+        companyCasinoCommentId:
+          type: string
+          format: uuid
+        companyCode:
+          type: string
+          nullable: true
+        propertyCode:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        externalCommentId:
+          type: integer
+          format: int64
+          nullable: true
+        displayDate:
+          type: string
+          format: date-time
+          nullable: true
+        displayEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        commentStatusDate:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        priority:
+          type: string
+          nullable: true
+        content:
+          type: string
+          nullable: true
+        createdByFirstName:
+          type: string
+          nullable: true
+        createdByLastName:
+          type: string
+          nullable: true
+        createdByDepartment:
+          type: string
+          nullable: true
+        createdByTitle:
+          type: string
+          nullable: true
+        modifiedByFirstName:
+          type: string
+          nullable: true
+        modifiedByLastName:
+          type: string
+          nullable: true
+        modifiedByDepartment:
+          type: string
+          nullable: true
+        modifiedByTitle:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PageModel:
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+        sortField:
+          type: string
+          nullable: true
+        sortDescending:
+          type: boolean
+      additionalProperties: false
+    CompanyCasinoCommentSearchParameters:
+      type: object
+      properties:
+        priority:
+          type: string
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        fromDate:
+          type: string
+          format: date-time
+          nullable: true
+        toDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CompanyCasinoCommentSearchRequestDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageModel'
+        searchParameters:
+          $ref: '#/components/schemas/CompanyCasinoCommentSearchParameters'
+      additionalProperties: false
+    PageResults:
+      type: object
+      properties:
+        totalRecords:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CompanyCasinoCommentSearchResponseDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageResults'
+        companyCasinoCommentItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyCasinoCommentRequestDto'
+          nullable: true
+      additionalProperties: false
+    CompanyCasinoProfileDto:
+      type: object
+      properties:
+        companyCasinoProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        profileId:
+          type: string
+          format: uuid
+          nullable: true
+        companyCode:
+          type: string
+          nullable: true
+        predominantPropertyCode:
+          type: string
+          nullable: true
+        accountNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        mergedToAccountNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        activationSource:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        tierCode:
+          type: integer
+          format: int32
+          nullable: true
+        tierCredits:
+          type: integer
+          format: int32
+          nullable: true
+        tierStartDate:
+          type: string
+          format: date-time
+          nullable: true
+        tierEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        tierEarningsExpiration:
+          type: string
+          format: date-time
+          nullable: true
+        tierPointsToMaintain:
+          type: integer
+          format: int32
+          nullable: true
+        nextTierCode:
+          type: integer
+          format: int32
+          nullable: true
+        nextTierDescription:
+          type: string
+          nullable: true
+        nextTierCredits:
+          type: integer
+          format: int32
+          nullable: true
+        currentTierMatch:
+          type: boolean
+          nullable: true
+        pastTierMatch:
+          type: boolean
+          nullable: true
+        tierMatchThresholdPoints:
+          type: integer
+          format: int32
+          nullable: true
+        totalCreditsToNextTier:
+          type: integer
+          format: int32
+          nullable: true
+        currentCreditsToNextTier:
+          type: integer
+          format: int32
+          nullable: true
+        tierDescription:
+          type: string
+          nullable: true
+        firstTierGoal:
+          type: string
+          nullable: true
+        firstTierGoalPoints:
+          type: integer
+          format: int32
+          nullable: true
+        secondTierGoal:
+          type: string
+          nullable: true
+        secondTierGoalPoints:
+          type: integer
+          format: int32
+          nullable: true
+        legacyUserId:
+          type: integer
+          format: int64
+          nullable: true
+        creditType:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        companyValuationScore:
+          type: number
+          format: double
+          nullable: true
+        companyRank:
+          type: string
+          nullable: true
+        accountStatus:
+          maxLength: 32
+          minLength: 0
+          type: string
+          nullable: true
+        banned:
+          type: boolean
+        playerType:
+          maxLength: 40
+          minLength: 0
+          type: string
+          nullable: true
+        sourceLead:
+          maxLength: 2048
+          minLength: 0
+          type: string
+          nullable: true
+        dataSource:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        accountType:
+          type: string
+          nullable: true
+        registrationSource:
+          type: string
+          nullable: true
+        activationDate:
+          type: string
+          format: date-time
+          nullable: true
+        registrationDate:
+          type: string
+          format: date-time
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        modifiedDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CompanyCasinoProfileCreateDto:
+      type: object
+      properties:
+        companyCasinoProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        profileId:
+          type: string
+          format: uuid
+          nullable: true
+        companyCode:
+          type: string
+          nullable: true
+        predominantPropertyCode:
+          type: string
+          nullable: true
+        accountNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        mergedToAccountNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        activationSource:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        tierCode:
+          type: integer
+          format: int32
+          nullable: true
+        tierCredits:
+          type: integer
+          format: int32
+          nullable: true
+        tierStartDate:
+          type: string
+          format: date-time
+          nullable: true
+        tierEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        tierEarningsExpiration:
+          type: string
+          format: date-time
+          nullable: true
+        tierPointsToMaintain:
+          type: integer
+          format: int32
+          nullable: true
+        nextTierCode:
+          type: integer
+          format: int32
+          nullable: true
+        nextTierCredits:
+          type: integer
+          format: int32
+          nullable: true
+        currentTierMatch:
+          type: boolean
+          nullable: true
+        pastTierMatch:
+          type: boolean
+          nullable: true
+        tierMatchThresholdPoints:
+          type: integer
+          format: int32
+          nullable: true
+        totalCreditsToNextTier:
+          type: integer
+          format: int32
+          nullable: true
+        legacyUserId:
+          type: integer
+          format: int64
+          nullable: true
+        creditType:
+          maxLength: 100
+          minLength: 0
+          type: string
+          nullable: true
+        companyValuationScore:
+          type: number
+          format: double
+          nullable: true
+        companyRank:
+          type: string
+          nullable: true
+        accountStatus:
+          maxLength: 32
+          minLength: 0
+          type: string
+          nullable: true
+        banned:
+          type: boolean
+        playerType:
+          maxLength: 40
+          minLength: 0
+          type: string
+          nullable: true
+        sourceLead:
+          maxLength: 2048
+          minLength: 0
+          type: string
+          nullable: true
+        dataSource:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        accountType:
+          type: string
+          nullable: true
+        registrationSource:
+          type: string
+          nullable: true
+        activationDate:
+          type: string
+          format: date-time
+          nullable: true
+        registrationDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CasinoProfileCreateResponseDto:
+      type: object
+      properties:
+        companyCasinoProfileId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    ConsentTypeGetResponseDto:
+      type: object
+      properties:
+        consentTypeCode:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CompanyProfileConsentGetDto:
+      type: object
+      properties:
+        companyProfileConsentId:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+        companyCode:
+          type: string
+          nullable: true
+        consentTypeCode:
+          type: string
+          nullable: true
+        consentDate:
+          type: string
+          format: date-time
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        modifiedDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CompanyProfileConsentCreateDto:
+      required:
+        - companyCode
+        - profileId
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        companyCode:
+          maxLength: 10
+          minLength: 0
+          type: string
+        consentTypeCodes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        consentDate:
+          type: string
+          format: date-time
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        modifiedDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CompanyProfileConsentCreateResponseDto:
+      type: object
+      properties:
+        companyProfileConsentIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+      additionalProperties: false
+    PropertyPreference:
+      required:
+        - propertyCode
+        - sendEmail
+      type: object
+      properties:
+        propertyCode:
+          type: string
+        sendEmail:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    CompanyPropertyPreference:
+      type: object
+      properties:
+        sendMail:
+          type: boolean
+          nullable: true
+        sendSMS:
+          type: boolean
+          nullable: true
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyPreference'
+          nullable: true
+      additionalProperties: false
+    CompanyProfilePreferencesDto:
+      type: object
+      properties:
+        companyProfilePreferenceId:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+        companyCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+          nullable: true
+        preferences:
+          $ref: '#/components/schemas/CompanyPropertyPreference'
+      additionalProperties: false
+    CompanyProfilePreferencesCreateDto:
+      required:
+        - companyCode
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        companyCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+        preferences:
+          $ref: '#/components/schemas/CompanyPropertyPreference'
+      additionalProperties: false
+    CompanyProfilePreferencesCreateResponseDto:
+      type: object
+      properties:
+        companyProfilePreferenceId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    SubscriptionTypeDto:
+      type: object
+      properties:
+        companySubscriptionTypeId:
+          type: string
+          format: uuid
+        companyCode:
+          type: string
+          nullable: true
+        subscriptionTypeCode:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        active:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    ContactDto:
+      type: object
+      properties:
+        profileContactId:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+        contactTypeCode:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        verified:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContactCreateDto:
+      required:
+        - contactTypeCode
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        contactTypeCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+        value:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        verified:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          maxLength: 5
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContactCreateResponseDto:
+      type: object
+      properties:
+        profileContactId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    ContactUpdateDto:
+      type: object
+      properties:
+        profileContactId:
+          type: string
+          format: uuid
+        contactTypeCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+          nullable: true
+        value:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        verified:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          maxLength: 5
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContactSearchResultDto:
+      type: object
+      properties:
+        profileContactId:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+        email:
+          type: string
+          nullable: true
+        verified:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileGetVerifiedDataDto:
+      type: object
+      properties:
+        profileContactId:
+          type: string
+          format: uuid
+        value:
+          type: string
+          nullable: true
+        verified:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CasinoProfileForProfileGetDto:
+      type: object
+      properties:
+        companyCasinoProfileId:
+          type: string
+          format: uuid
+        profileId:
+          type: string
+          format: uuid
+        companyCode:
+          type: string
+          nullable: true
+        predominantPropertyCode:
+          type: string
+          nullable: true
+        accountNumber:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        mergedToAccountNumber:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        activationSource:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        tierCode:
+          type: integer
+          format: int32
+          nullable: true
+        tierCredits:
+          type: integer
+          format: int32
+          nullable: true
+        tierStartDate:
+          type: string
+          format: date-time
+          nullable: true
+        tierEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        tierEarningsExpiration:
+          type: string
+          format: date-time
+          nullable: true
+        tierPointsToMaintain:
+          type: integer
+          format: int32
+          nullable: true
+        nextTierCode:
+          type: integer
+          format: int32
+          nullable: true
+        nextTierDescription:
+          type: string
+          nullable: true
+        nextTierCredits:
+          type: integer
+          format: int32
+          nullable: true
+        currentTierMatch:
+          type: boolean
+          nullable: true
+        pastTierMatch:
+          type: boolean
+          nullable: true
+        tierMatchThresholdPoints:
+          type: integer
+          format: int32
+          nullable: true
+        totalCreditsToNextTier:
+          type: integer
+          format: int32
+          nullable: true
+        currentCreditsToNextTier:
+          type: integer
+          format: int32
+          nullable: true
+        tierDescription:
+          type: string
+          nullable: true
+        firstTierGoal:
+          type: string
+          nullable: true
+        firstTierGoalPoints:
+          type: integer
+          format: int32
+          nullable: true
+        secondTierGoal:
+          type: string
+          nullable: true
+        secondTierGoalPoints:
+          type: integer
+          format: int32
+          nullable: true
+        legacyUserId:
+          type: integer
+          format: int64
+          nullable: true
+        creditType:
+          maxLength: 50
+          minLength: 0
+          type: string
+          nullable: true
+        companyValuationScore:
+          type: number
+          format: double
+          nullable: true
+        companyRank:
+          type: string
+          nullable: true
+        accountStatus:
+          maxLength: 32
+          minLength: 0
+          type: string
+          nullable: true
+        banned:
+          type: boolean
+        playerType:
+          maxLength: 20
+          minLength: 0
+          type: string
+          nullable: true
+        sourceLead:
+          maxLength: 1024
+          minLength: 0
+          type: string
+          nullable: true
+        dataSource:
+          maxLength: 128
+          minLength: 0
+          type: string
+          nullable: true
+        activationDate:
+          type: string
+          format: date-time
+          nullable: true
+        registrationDate:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          maxLength: 25
+          minLength: 0
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        modifiedBy:
+          maxLength: 25
+          minLength: 0
+          type: string
+          nullable: true
+        modifiedDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ProfileGetDto:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        nickname:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+        gender:
+          type: string
+          nullable: true
+        primaryEmail:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        homePhone:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        workPhone:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        mobilePhone:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        preferredAddress:
+          $ref: '#/components/schemas/AddressDto'
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        modifiedDate:
+          type: string
+          format: date-time
+          nullable: true
+        companyCasinoProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CasinoProfileForProfileGetDto'
+          nullable: true
+      additionalProperties: false
+    ProfileUpdateDto:
+      type: object
+      properties:
+        firstName:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        middleName:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        lastName:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        nickname:
+          maxLength: 256
+          minLength: 0
+          pattern: '^[a-zA-Z ]*$'
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+        gender:
+          maxLength: 1
+          minLength: 0
+          type: string
+          nullable: true
+        primaryEmailId:
+          type: string
+          format: uuid
+          nullable: true
+        mobilePhoneId:
+          type: string
+          format: uuid
+          nullable: true
+        preferredAddressId:
+          type: string
+          format: uuid
+          nullable: true
+      additionalProperties: false
+    PropertyProfileDto:
+      type: object
+      properties:
+        propertyProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        profileId:
+          type: string
+          format: uuid
+        propertyCode:
+          type: string
+          nullable: true
+        companyCode:
+          type: string
+          nullable: true
+        valuationScore:
+          type: number
+          format: double
+          nullable: true
+        rank:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileSubscriptionsForAllCompanySubscriptionTypeDto:
+      type: object
+      properties:
+        profileSubscriptionId:
+          type: string
+          format: uuid
+          nullable: true
+        profileId:
+          type: string
+          format: uuid
+          nullable: true
+        companyCode:
+          type: string
+          nullable: true
+        companySubscriptionTypeId:
+          type: string
+          format: uuid
+        subscriptionTypeCode:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    ProfileGetDetailDto:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        firstName:
+          maxLength: 25
+          minLength: 0
+          type: string
+          nullable: true
+        middleName:
+          maxLength: 25
+          minLength: 0
+          type: string
+          nullable: true
+        lastName:
+          maxLength: 25
+          minLength: 0
+          type: string
+          nullable: true
+        nickname:
+          maxLength: 25
+          minLength: 0
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+        gender:
+          maxLength: 1
+          minLength: 0
+          type: string
+          nullable: true
+        primaryEmail:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        alternateEmail:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        homePhone:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        workPhone:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        mobilePhone:
+          $ref: '#/components/schemas/ProfileGetVerifiedDataDto'
+        preferredAddressId:
+          type: string
+          format: uuid
+          nullable: true
+        companyCasinoProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyCasinoProfileDto'
+          nullable: true
+        profileAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressDto'
+          nullable: true
+        propertyProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyProfileDto'
+          nullable: true
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileSubscriptionsForAllCompanySubscriptionTypeDto'
+          nullable: true
+        companyPreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+          nullable: true
+      additionalProperties: false
+    ProfileCreateDto:
+      type: object
+      properties:
+        firstName:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        middleName:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        lastName:
+          maxLength: 256
+          minLength: 0
+          type: string
+          nullable: true
+        nickname:
+          maxLength: 256
+          minLength: 0
+          pattern: '^[a-zA-Z ]*$'
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+        gender:
+          maxLength: 1
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileCreateResponseDto:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    ProfileSearchParameters:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          nullable: true
+        accountNumber:
+          type: string
+          nullable: true
+        patronLegacyUserId:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    ProfileSearchRequestDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageModel'
+        searchParameters:
+          $ref: '#/components/schemas/ProfileSearchParameters'
+      additionalProperties: false
+    ProfileSearchItem:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        casinoProfileId:
+          type: string
+          format: uuid
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        accountNumber:
+          type: string
+          nullable: true
+        tierCode:
+          type: integer
+          format: int32
+          nullable: true
+        tierDescription:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        stateProvince:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        dateOfBirthSQL:
+          type: string
+          format: date-time
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        email:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        predominantPropertyCode:
+          type: string
+          nullable: true
+        playerType:
+          type: string
+          nullable: true
+        patronLegacyUserId:
+          type: integer
+          format: int64
+          nullable: true
+        companyValuationScore:
+          type: number
+          format: double
+          nullable: true
+        companyRank:
+          type: string
+          nullable: true
+        accountStatus:
+          type: string
+          nullable: true
+        mobileNumber:
+          type: string
+          nullable: true
+        mergedToAccountNumber:
+          type: string
+          nullable: true
+        banned:
+          type: boolean
+        totalRows:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ProfileSearchResponseDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageResults'
+        profileItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileSearchItem'
+          nullable: true
+      additionalProperties: false
+    ProfileSignupSearchParameters:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          nullable: true
+        accountNumber:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        online:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    ProfileSignupSearchRequestDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageModel'
+        searchParameters:
+          $ref: '#/components/schemas/ProfileSignupSearchParameters'
+      additionalProperties: false
+    ProfileSysVerifiedData:
+      type: object
+      properties:
+        profileContactId:
+          type: string
+          format: uuid
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        verified:
+          type: integer
+          format: int32
+          nullable: true
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileSubscriptionsDto:
+      type: object
+      properties:
+        profileSubscriptionId:
+          type: string
+          format: uuid
+          nullable: true
+        profileId:
+          type: string
+          format: uuid
+        companyCode:
+          type: string
+          nullable: true
+        companySubscriptionTypeId:
+          type: string
+          format: uuid
+        subscriptionTypeCode:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ProfileSyncPostDto:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        nickname:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+        gender:
+          type: string
+          nullable: true
+        primaryEmail:
+          $ref: '#/components/schemas/ProfileSysVerifiedData'
+        alternateEmail:
+          $ref: '#/components/schemas/ProfileSysVerifiedData'
+        homePhone:
+          $ref: '#/components/schemas/ProfileSysVerifiedData'
+        workPhone:
+          $ref: '#/components/schemas/ProfileSysVerifiedData'
+        mobilePhone:
+          $ref: '#/components/schemas/ProfileSysVerifiedData'
+        preferredAddressId:
+          type: string
+          format: uuid
+          nullable: true
+        companyCasinoProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyCasinoProfileDto'
+          nullable: true
+        profileAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressUpdateDto'
+          nullable: true
+        propertyProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyProfileDto'
+          nullable: true
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileSubscriptionsDto'
+          nullable: true
+        companyPreferences:
+          $ref: '#/components/schemas/CompanyProfilePreferencesDto'
+      additionalProperties: false
+    ProfileSyncPostResponseDto:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        updated:
+          type: boolean
+      additionalProperties: false
+    ProfileIVRSearchParameters:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileIVRSearchRequestDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageModel'
+        searchParameters:
+          $ref: '#/components/schemas/ProfileIVRSearchParameters'
+      additionalProperties: false
+    PhoneNumber:
+      type: object
+      properties:
+        phone:
+          type: string
+          nullable: true
+        contactType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileIVRSearchItem:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        accountNumber:
+          type: string
+          nullable: true
+        cardTier:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        stateProvince:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+          nullable: true
+          readOnly: true
+        phoneNumbersJsonString:
+          type: string
+          nullable: true
+        predominantPropertyCode:
+          type: string
+          nullable: true
+        patronLegacyId:
+          type: integer
+          format: int64
+          nullable: true
+        playerType:
+          type: string
+          nullable: true
+        banned:
+          type: boolean
+        totalRows:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ProfileIVRSearchResponseDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageResults'
+        profileItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileIVRSearchItem'
+          nullable: true
+      additionalProperties: false
+    ProfileHotelReservationSearchParameters:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileHotelReservationSearchRequestDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageModel'
+        searchParameters:
+          $ref: '#/components/schemas/ProfileHotelReservationSearchParameters'
+      additionalProperties: false
+    Ranks:
+      type: object
+      properties:
+        valuationScore:
+          type: number
+          format: double
+          nullable: true
+        rank:
+          type: string
+          nullable: true
+        property:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Tier:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileHotelReservationSearchItem:
+      type: object
+      properties:
+        profileId:
+          type: string
+          format: uuid
+        accountNumber:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        dateOfBirth:
+          type: string
+          format: date-time
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        banned:
+          type: boolean
+        playerType:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        ranks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ranks'
+          nullable: true
+          readOnly: true
+        ranksJsonString:
+          type: string
+          nullable: true
+        tier:
+          $ref: '#/components/schemas/Tier'
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+          nullable: true
+          readOnly: true
+        phoneNumbersJsonString:
+          type: string
+          nullable: true
+        totalRows:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ProfileHotelReservationSearchResponseDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PageResults'
+        profiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileHotelReservationSearchItem'
+          nullable: true
+      additionalProperties: false
+    ProfileSubscriptionsCreateDto:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          nullable: true
+        companySubscriptionTypeCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProfileSubscriptionsCreateResponseDto:
+      type: object
+      properties:
+        profileSubscriptionId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    PropertyProfileCreateResponseDto:
+      type: object
+      properties:
+        propertyProfileId:
+          type: string
+          format: uuid
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "JWT Authorization header using the Bearer scheme. \r\n                               Enter your token in the text input below"
+      name: X-JWT-Assertion-Internal
+      in: header
