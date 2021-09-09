@@ -23,7 +23,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
       run:
-        mvn deploy
+        mvn clean install -Dmaven.test.skip=true --file pom.xml
     # - name: Publish artifact to github packages.
     #   run: |
     #     echo $GROUP
