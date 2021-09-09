@@ -30,6 +30,6 @@ jobs:
         echo $OWNER
         echo $REPOSITORY
         curl -i -X PUT \
-        "https://maven.pkg.github.com/$OWNER/$REPOSITORY/$GROUP/github/com.mycompany.app.my-app/master/4/pom" \
+        "https://maven.pkg.github.com/$OWNER/$REPOSITORY/$GROUP/github/com.mycompany.app.my-app/master/2/pom" \
         -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "rewrite: 1" \
         --upload-file "./pom.xml" -vvv
